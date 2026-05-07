@@ -4,11 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+
 </head>
 <body>
     <h1>Cadastro do Curso</h1>
     <form action="/curso" method="POST">
-        Curso: <input type="text" name="curso" id="curso"><br><br>
+        Código do curso: <input type="text" name="cod" id="cod"><br><br>
+        Nome: <input type="text" name="curso" id="curso"><br><br>
         Carga Horária: <input type="text" name="ch" id="ch"><br><br>
         Tipo: <input type="text" name="tipo" id="tipo"><br><br>   
         <button type="submit" value="Enviar">Salvar</button>
