@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Aluno</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #003366;
+            color: #fff;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            height: 70px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        header .logo {
+            width: 48px;
+            height: 48px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #003366;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        header span {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            display: block;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 560px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #003366;
+            color: #fff;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-header svg { flex-shrink: 0; }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-body { padding: 2rem; }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid #ccd3dc;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #222;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fafbfc;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #003366;
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.12);
+            background: #fff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #e8eaed;
+            margin: 1.5rem 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-submit:hover { background: #004a99; }
+        .btn-submit:active { transform: scale(0.99); }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.78rem;
+            color: #888;
+            background: #fff;
+            border-top: 1px solid #e8eaed;
+        }
+
+        @media (max-width: 480px) {
+            .form-row { grid-template-columns: 1fr; }
+            .card-body { padding: 1.5rem 1.2rem; }
+            header h1 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">IE</div>
+        <div>
+            <h1>Instituição de Ensino</h1>
+            <span>Sistema Acadêmico</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <h2>Cadastro de Aluno</h2>
+            </div>
+
+            <div class="card-body">
+                <form action="/aluno" method="POST">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Mat">Matrícula</label>
+                            <input type="text" id="Mat" name="Mat" placeholder="Ex: 2024001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="curso">Curso</label>
+                            <input type="text" id="curso" name="curso" placeholder="Ex: Engenharia" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Nome">Nome Completo</label>
+                        <input type="text" id="Nome" name="Nome" placeholder="Nome do aluno" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="aluno@email.com" required>
+                        </div>
+                    </div>
+
+                    <hr class="divider">
+
+                    <button type="submit" class="btn-submit">Cadastrar Aluno</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Instituição de Ensino &mdash; Sistema Acadêmico
+    </footer>
+
+</body>
+</html>
