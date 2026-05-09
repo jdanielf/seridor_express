@@ -3,55 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cadastro de Curso</title>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1 {
-            color: #333;
+        header {
+            background: #003366;
+            color: #fff;
+            padding: 0 2rem;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
-        form {
-            margin-bottom: 20px;
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #003366;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        header h1 { font-size: 1.2rem; font-weight: 600; }
+        header span { font-size: 0.8rem; opacity: 0.75; display: block; }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 520px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #003366;
+            color: #fff;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-header h2 { font-size: 1.1rem; font-weight: 600; }
+
+        .card-body { padding: 2rem; }
+
+        .form-group { margin-bottom: 1.25rem; }
+
+        label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
 
         input[type="text"] {
-            width: 50%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid #ccd3dc;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #222;
+            background: #fafbfc;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #003366;
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.12);
+            background: #fff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1.5px solid #ccd3dc;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #222;
+            background: #fafbfc;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            appearance: none;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        select:focus {
+            outline: none;
+            border-color: #003366;
+            box-shadow: 0 0 0 3px rgba(0,51,102,0.12);
+            background: #fff;
         }
 
+        .select-wrapper {
+            position: relative;
+        }
 
+        .select-wrapper::after {
+            content: '▾';
+            position: absolute;
+            right: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e8eaed;
+            margin: 1.5rem 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-submit:hover { background: #004a99; }
+        .btn-submit:active { transform: scale(0.99); }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.78rem;
+            color: #888;
+            background: #fff;
+            border-top: 1px solid #e8eaed;
+        }
+
+        @media (max-width: 480px) {
+            .form-row { grid-template-columns: 1fr; }
+            .card-body { padding: 1.5rem 1.2rem; }
+            header h1 { font-size: 1rem; }
+        }
     </style>
-
 </head>
 <body>
-    <h1>Cadastro do Curso</h1>
-    <form action="/curso" method="POST">
-        Código do curso: <input type="text" name="cod" id="cod"><br><br>
-        Nome: <input type="text" name="curso" id="curso"><br><br>
-        Carga Horária: <input type="text" name="ch" id="ch"><br><br>
-        Tipo: <input type="text" name="tipo" id="tipo"><br><br>   
-        <button type="submit" value="Enviar">Salvar</button>
-    </form>
-    
+
+    <header>
+        <div class="logo">IE</div>
+        <div>
+            <h1>Instituição de Ensino</h1>
+            <span>Sistema Acadêmico</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <h2>Cadastro de Curso</h2>
+            </div>
+
+            <div class="card-body">
+                <form action="/curso" method="POST">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cod">Código do Curso</label>
+                            <input type="text" id="cod" name="cod" placeholder="Ex: ENG001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ch">Carga Horária</label>
+                            <input type="text" id="ch" name="ch" placeholder="Ex: 3600h" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="curso">Nome do Curso</label>
+                        <input type="text" id="curso" name="curso" placeholder="Ex: Engenharia de Software" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <div class="select-wrapper">
+                            <select id="tipo" name="tipo" required>
+                                <option value="" disabled selected>Selecione o tipo</option>
+                                <option value="Bacharelado">Bacharelado</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Tecnólogo">Tecnólogo</option>
+                                <option value="Pós-Graduação">Pós-Graduação</option>
+                                <option value="Técnico">Técnico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <button type="submit" class="btn-submit">Salvar Curso</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Instituição de Ensino &mdash; Sistema Acadêmico
+    </footer>
+
 </body>
 </html>

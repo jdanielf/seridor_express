@@ -33,7 +33,11 @@ alunos.push(alunoNovo) //adiciona o novo aluno ao array de alunos
 
     // const {cod,curso, ch, tipo} = req.body // desestruturação do objeto req.body para obter os valores dos campos do formulário
     // console.log(req.body) vizualizar o corpo da requisição no console
-  res.status(200).json({mensagem: 'Aluno cadastrado com sucesso'})
+  
+    // res.status(200).json({mensagem: 'Aluno cadastrado com sucesso'})
+  
+
+  res.redirect('/alunos') //redireciona para a rota de exibição de alunos após o cadastro
 
 })
 
