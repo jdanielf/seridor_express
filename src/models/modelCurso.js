@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 
 
 // export let cursos = [{
@@ -7,13 +8,12 @@ import fs from 'fs'
 //      ch: 40,
 //       tipo: 'Técnico'}] //array para armazenar os cursos cadastrados
 
-const caminho = '.data/cursos.json' //caminho do arquivo JSON para armazenar os cursos cadastrados
+const caminho = path.join(import.meta.dirname, '..', 'database', 'cursos.json') //caminho do arquivo JSON para armazenar os cursos cadastrados
 
 export function lerCursos() {
     try {
         if (!fs.existsSync(caminho)) {
-            fs.writeFileSync(caminho  ) //se o arquivo não existir, cria um novo arquivo vazio
-            fs.writeFileSync(caminho) //escreve um array vazio no arquivo JSON
+            fs.writeFileSync(caminho, '[]', 'utf-8') //se o arquivo JSON não existir, cria um novo arquivo vazio com um array vazio
         }
 
         const conteudo = fs.readFileSync(caminho, 'utf-8') //lê o conteúdo do arquivo JSON
@@ -30,7 +30,8 @@ export function lerCursos() {
         export function salvarCursos(cursos) {
            console.log(cursos) //log para verificar os dados que estão sendo salvos
            try {
-               fs.writeFileSync(caminho, JSON.stringify(cursos, null, 2)) //escreve o array de cursos no arquivo JSON, formatado com indentação de 2 espaços
+               fs.writeFileSync(caminho, JSON.stringify(cursos, null, 2)) 
+               console.log('Arquivo de cursos salvo com sucesso.') //escreve o array de cursos no arquivo JSON, formatado com indentação de 2 espaços
            }catch (error) {
                console.error('Erro ao salvar o arquivo de cursos:', error)
            }        

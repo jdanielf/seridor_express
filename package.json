@@ -21,9 +21,13 @@
   },
   "homepage": "https://github.com/jdanielf/seridor_express#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14",
+    "uuid": "^14.0.0"
   }
 }

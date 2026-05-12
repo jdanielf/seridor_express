@@ -1,0 +1,15 @@
+[
+  {
+    "cod": "001",
+    "curso": "ADMINISTRAÇÃO",
+    "ch": "3600",
+    "tipo": "Bacharelado"
+  },
+  {
+    "id": "70a6b6a8-d64f-47a1-976b-17a33a3bf47d",
+    "cod": "002",
+    "curso": "Pastor",
+    "ch": "200",
+    "tipo": "Licenciatura"
+  }
+]

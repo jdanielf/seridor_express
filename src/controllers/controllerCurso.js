@@ -1,5 +1,6 @@
 import { lerCursos,salvarCursos } from '../models/modelCurso.js' //importação do array de cursos do arquivo modelCurso.js
 import path from 'path'
+import {v4 as uuid} from 'uuid' //importação da função v4 do pacote uuid para gerar identificadores únicos para os cursos
 
 let cursos = lerCursos() //variável para armazenar os cursos lidos do arquivo JSON
 
@@ -13,13 +14,13 @@ export const criarCurso = (req,res) =>{
     const ch = req.body.ch
     const tipo = req.body.tipo
 
-const cursoNovo = {cod: cod, curso: curso, ch: ch, tipo: tipo} //criação de um novo objeto curso com os dados recebidos do formulário
+const cursoNovo = {id: uuid(),cod: cod, curso: curso, ch: ch, tipo: tipo} //criação de um novo objeto curso com os dados recebidos do formulário
 
 cursos.push(cursoNovo) //adiciona o novo curso ao array de cursos
 
 salvarCursos(cursos) //salva o array de cursos atualizado no arquivo JSON
 
-  res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o cadastro
+  res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o  astro
 
   // res.status(200).json({mensagem: 'Curso cadastrado com sucesso'})
 }
