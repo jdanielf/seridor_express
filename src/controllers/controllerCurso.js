@@ -20,7 +20,7 @@ cursos.push(cursoNovo) //adiciona o novo curso ao array de cursos
 
 salvarCursos(cursos) //salva o array de cursos atualizado no arquivo JSON
 
-  res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o  astro
+  res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o cadastro 
 
   // res.status(200).json({mensagem: 'Curso cadastrado com sucesso'})
 }
@@ -35,9 +35,10 @@ export function procurarCurso(req, res) {
 }
 
 export function mostrarCursos(req, res){
-  res.status(200).json(cursos) //retorna o array de cursos em formato JSON
-
+  res.render('cursos',{cursos})
 }
+
+
 
 export function atualizaTodosCursos(req, res){
   const cursoEncontrado = cursos.find(c => c.cod === req.params.cod) //encontra o curso pelo nome passado como parâmetro na URL

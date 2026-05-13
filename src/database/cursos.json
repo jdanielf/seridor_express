@@ -11,5 +11,47 @@
     "curso": "Pastor",
     "ch": "200",
     "tipo": "Licenciatura"
+  },
+  {
+    "id": "c9536c6b-24d1-45e8-949a-a7d1633d0dd2",
+    "cod": "003",
+    "curso": "porteiro",
+    "ch": "200",
+    "tipo": "Tecnólogo"
+  },
+  {
+    "id": "633d83da-b461-4217-bf75-5cce2d1b441b",
+    "cod": "003",
+    "curso": "porteiro",
+    "ch": "200",
+    "tipo": "Técnico"
+  },
+  {
+    "id": "0f7291b0-fed9-4769-a7cf-455045c0f484",
+    "cod": "003",
+    "curso": "porteiro",
+    "ch": "200",
+    "tipo": "Técnico"
+  },
+  {
+    "id": "715244d2-ca69-4442-ac38-a7a0e8cf1e5c",
+    "cod": "003",
+    "curso": "porteiro",
+    "ch": "200",
+    "tipo": "Técnico"
+  },
+  {
+    "id": "c4ba5258-b637-4441-b5cd-05f4e46916ba",
+    "cod": "003",
+    "curso": "porteiro",
+    "ch": "200",
+    "tipo": "Técnico"
+  },
+  {
+    "id": "899482f5-a2a1-4a03-988e-cf1e716b3d82",
+    "cod": "004",
+    "curso": "teste",
+    "ch": "12",
+    "tipo": "Bacharelado"
   }
 ]

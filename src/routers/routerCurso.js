@@ -7,7 +7,7 @@ import {criarCurso,cadastroCurso, procurarCurso, mostrarCursos,
 
 
 
-const routerCurso = express()
+const routerCurso = express.Router()
 
 routerCurso.get('/cadastro', cadastroCurso) //rota para exibir o formulário de cadastro de cursos, chama a função cadastro do controllerCurso.js para processar a requisição
 

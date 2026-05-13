@@ -4,6 +4,11 @@ import routerAluno from './src/routers/routerAluno.js'
 import path from 'path'
 import morgan from 'morgan' //importação do morgan para log de requisições HTTP
 import dotenv from 'dotenv' //importação do dotenv para carregar variáveis de ambiente do arquivo .env
+import { fileURLToPath } from 'url'
+
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 dotenv.config() //carrega as variáveis de ambiente do arquivo .env
 
@@ -16,14 +21,17 @@ const host = process.env.HOST || 'localhost' //host do servidor, definido na var
 app.use(express.json())//middleware para interpretar o corpo da requisição como JSON
 app.use(express.urlencoded({ extended: true }))//middleware para requisição do formulário
 
-app.use(express.static(path.join(import.meta.dirname, './src/public'))) //middleware para servir arquivos estáticos da pasta public, como HTML, CSS e JavaScript
+app.use(express.static(path.join(__dirname, 'src/public')))
 app.use(morgan('dev')) //middleware para log de requisições HTTP no formato 'dev', que exibe informações detalhadas sobre cada requisição no console
+
+app.set('view engine', 'ejs') //configuração do EJS como motor de visualização para renderizar templates HTML dinâmicos
+app.set('views', path.join(__dirname, 'src/views'))
 
 app.use(routerCurso) //middleware para usar as rotas definidas no routerCurso
 app.use(routerAluno)
 
 app.get('/', (req, res) => {
-  res.send('<h1> Página Inicial</h1>')
+  res.render('index', { title: 'Bem-vindo ao Sistema de Gerenciamento de Cursos e Alunos' }) //rota para a página inicial, renderizando o template 'index.ejs' com um título
 })
 
 

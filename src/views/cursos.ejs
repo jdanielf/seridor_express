@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+</head>
+<body>
+    <h1> Cursos Disponíveis</h1>
+    <% cursos.forEach(curso => { %>
+        <div>
+            <h2>
+                codigo: <%= curso.cod %> 
+           carga horária: <%= curso.ch %> 
+           nome: <%= curso.curso %>
+           tipo: <%= curso.tipo %>
+            </h2>
+
+           
+        </div>
+    <% }) %>
+    
+</body>
+</html>
