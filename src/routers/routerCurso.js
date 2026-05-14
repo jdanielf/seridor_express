@@ -4,6 +4,7 @@ import {criarCurso,cadastroCurso, procurarCurso, mostrarCursos,
    atualizaTodosCursos, deletaCurso,atualizaUmCurso,procurarCurso1
 
 } from '../controllers/controllerCurso.js' //importação da função criarCurso do arquivo controllerCurso.js
+import routerAluno from './routerAluno.js'
 
 
 
@@ -17,6 +18,8 @@ routerCurso.get('/busca', procurarCurso) //rota para exibir o formulário de bus
 routerCurso.post('/curso', criarCurso) //rota para criar um novo curso, chama a função criarCurso do controllerCurso.js para processar a requisição
 
 routerCurso.get('/cursos', mostrarCursos) //rota para exibir todos os cursos cadastrados, chama a função mostrarCursos do controllerCurso.js para processar a requisição
+
+
 
 
 //rota que vai atualizar todos os dados do curso, ou seja, o nome do curso, a carga horária e o tipo do curso

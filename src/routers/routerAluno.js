@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import { mostraralunos } from '../controllers/controllerCurso'
 
 
 const routerAluno = express()
@@ -97,6 +98,9 @@ routerAluno.get('/aluno/:Mat', (req, res) => {
   if(!alunoEncontrado) return res.status(404).json({mensagem: 'Aluno não encontrado'})
   res.status(200).json(alunoEncontrado)
 })
+
+
+routerAluno.get('/alunos', mostraralunos) //rota para exibir todos os alunos cadastrados, chama a função mostraralunos do controllerCurso.js para processar a requisição
 
 
 export default routerAluno

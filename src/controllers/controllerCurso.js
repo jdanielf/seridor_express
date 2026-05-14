@@ -38,6 +38,10 @@ export function mostrarCursos(req, res){
   res.render('cursos',{cursos})
 }
 
+export function mostraralunos(req, res){
+  res.render('alunos', {alunos})
+}
+
 
 
 export function atualizaTodosCursos(req, res){

@@ -37,3 +37,14 @@ export function lerCursos() {
            }        
         }
     
+
+    export function lerAlunos() {
+        try {
+            const caminhoAlunos = path.join(import.meta.dirname, '..', 'database', 'alunos.json') //caminho do arquivo JSON para armazenar os alunos cadastrados
+            if (!fs.existsSync(caminhoAlunos)) {
+                fs.writeFileSync(caminhoAlunos, '[]', 'utf-8') //se o arquivo JSON não existir, cria um novo arquivo vazio com um array vazio
+            }       }catch (error) {
+            console.error('Erro ao ler o arquivo de alunos:', error)
+            return [] //em caso de erro, retorna um array vazio
+        }
+    }

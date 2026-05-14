@@ -53,5 +53,26 @@
     "curso": "teste",
     "ch": "12",
     "tipo": "Bacharelado"
+  },
+  {
+    "id": "dadd68c5-90bc-4c3c-beed-d3ddbb353803",
+    "cod": "005",
+    "curso": "serralheiro",
+    "ch": "518",
+    "tipo": "Técnico"
+  },
+  {
+    "id": "f6456009-06a0-4ed0-bb92-c0f16a77ec97",
+    "cod": "003",
+    "curso": "uber",
+    "ch": "1600",
+    "tipo": "Licenciatura"
+  },
+  {
+    "id": "39e12bd0-a6a2-43a0-a6c1-8856df235ebe",
+    "cod": "003",
+    "curso": "taxi",
+    "ch": "1600",
+    "tipo": "Licenciatura"
   }
 ]
