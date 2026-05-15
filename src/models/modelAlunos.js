@@ -20,3 +20,12 @@ export function lerAlunos() {
         return [] //em caso de erro, retorna um array vazio
     }
 }
+
+
+export function salvarAlunos(alunos) {
+    try {
+        fs.writeFileSync(caminho, JSON.stringify(alunos, null, 2), 'utf-8')
+    } catch (error) {
+        console.error('Erro ao salvar alunos:', error)
+    }
+}

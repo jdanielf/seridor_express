@@ -1,10 +1,11 @@
 import express from 'express'
 import routerCurso from './src/routers/routerCurso.js'
-import routerAluno from './src/routers/routerAluno.js' 
+// import routerAluno from './src/routers/routerAluno.js' 
 import path from 'path'
 import morgan from 'morgan' //importação do morgan para log de requisições HTTP
 import dotenv from 'dotenv' //importação do dotenv para carregar variáveis de ambiente do arquivo .env
 import { fileURLToPath } from 'url'
+import bdConexao from './src/config/database.js'
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -28,7 +29,7 @@ app.set('view engine', 'ejs') //configuração do EJS como motor de visualizaç�
 app.set('views', path.join(__dirname, 'src/views'))
 
 app.use(routerCurso) //middleware para usar as rotas definidas no routerCurso
-app.use(routerAluno)
+// app.use(routerAluno)
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Bem-vindo ao Sistema de Gerenciamento de Cursos e Alunos' }) //rota para a página inicial, renderizando o template 'index.ejs' com um título
@@ -40,3 +41,4 @@ app.get('/', (req, res) => {
 app.listen(port, host, () => {
   console.log(`Servidor em execução em: http://${host}:${port}`)
 })
+

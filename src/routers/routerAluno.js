@@ -1,13 +1,14 @@
 import express from 'express'
 import path from 'path'
-import { mostraralunos } from '../controllers/controllerCurso'
+// import { mostraralunos } from '../controllers/controllerAluno.js'
+// import { lerAlunos, salvarAlunos } from '../models/modelAlunos.js'
 
-
+  
 const routerAluno = express()
 
 
-let alunos = [{Mat: '001', Nome: 'José Daniel Ferreira', telefone: '98874-0000', email: 'jose@gmail.com', curso: 'Desenvolvimento de Sistemas'}] //array para armazenar os alunos cadastrados
-
+// let alunos = [{Mat: '001', Nome: 'José Daniel Ferreira', telefone: '98874-0000', email: 'jose@gmail.com', curso: 'Desenvolvimento de Sistemas'}] //array para armazenar os alunos cadastrados
+let alunos = lerAlunos()
 
 
 
