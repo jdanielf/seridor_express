@@ -1,25 +1,35 @@
-import mysql from 'mysql2'
+import mysql from 'mysql2/promise'
+// import mysql from 'mysql2'
 import dotenv from 'dotenv'
 
-dotenv.config() //carrega as variáveis de ambiente do arquivo .env
+dotenv.config()
 
-const bdConexao = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    port: process.env.DATABASE_PORT,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    charset: 'utf8mb4',
-    multipleStatements: true,
+let bdConexao = null
 
-})
+try{
+    bdConexao = await mysql.createConnection({
+        host: process.env.DATABASE_HOST,
+        port: process.env.DATABASE_PORT,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME,
+        charset: 'utf8mb4',
+        multipleStatements: true    
+    })
+    console.log('Conexão com o banco de dados estabelecida com sucesso!')
+} catch (err) {
+    console.error('Erro ao conectar ao banco de dados: ', err)
 
-bdConexao.connect((err) => {
-    if (err) {
-        console.error('Erro ao conectar o BD:', err)
-        return
-    }
-    console.log('Conexão com o BD realizada com sucesso!')
-})
+}
 
 export default bdConexao
+
+// bdConexao.connect((err) => {
+//     if (err) {
+//         console.error('Erro ao conectar o BD:', err)
+//         return
+//     }
+//     console.log('Conexão com o BD realizada com sucesso!')
+// })
+
+// export default bdConexao

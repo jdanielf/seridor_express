@@ -3,20 +3,31 @@ import bdConexao from '../config/database.js'
 
 
 
-export const criarCurso = (req,res) =>{
+export const criarCurso = async(req,res) =>{
 
      const {
       cod, curso, ch, tipo
     } = req.body
-if(!cod || !curso || !ch || !tipo){ return res.status(400).json({mensagem: 'Todos os campos são obrigatórios'})} //verifica se todos os campos foram preenchidos, caso contrário retorna um erro 400 com uma mensagem de erro em formato JSON
+if(!cod || !curso || !ch || !tipo){ 
+  return res.status(400).json({mensagem: 'Todos os campos são obrigatórios'})} //verifica se todos os campos foram preenchidos, caso contrário retorna um erro 400 com uma mensagem de erro em formato JSON
         const sql = 'INSERT INTO cursos (cod, curso, ch, tipo) VALUES (?, ?, ?, ?)' //consulta SQL para inserir um novo curso na tabela 'cursos'
-    bdConexao.query(sql, [cod, curso, ch, tipo], (err, result) => {
-        if (err) {
-            res.status(500).json({ mensagem: 'Erro ao cadastrar curso', err })
-            return 
-        }
-        res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o cadastro
-    })      
+    // bdConexao.query(sql, [cod, curso, ch, tipo], (err, result) => {
+    //     if (err) {
+    //         res.status(500).json({ mensagem: 'Erro ao cadastrar curso', err })
+    //         return 
+    //     }
+    //     res.redirect('/cursos') //redireciona para a rota de exibição de cursos após o cadastro
+    // })      
+
+
+    try{
+        const [cursoNovo] = await bdConexao.execute(sql, [cod, curso, ch, tipo])
+        console.log(cursoNovo)
+        res.redirect('/cursos')  
+    }catch(err){
+        console.log(err)
+        res.status(500).json({ erro: err.message})  
+    }  
 
 //   res.sendFile(path.resolve('./src/public/html/cadastro.html')) 
 
@@ -38,13 +49,13 @@ export function procurarCurso(req, res) {
 
 export  function mostrarCursos(req, res){
    
-    const sql = 'SELECT * FROM cursos' //consulta SQL para selecionar todos os cursos da tabela 'cursos'
-     bdConexao.query(sql, (err, cursos) => {
-        if(err) { res.status(500).json({mensagem: 'Erro ao buscar os cursos',err})
-            return   //em caso de erro, retorna um erro 500 com uma mensagem de erro em formato JSON
-        }
-        res.render('cursos',{cursos}) //renderiza a página 'cursos.ejs' passando o array de cursos como variável para ser exibida na página
-    })
+    // const sql = 'SELECT * FROM cursos' //consulta SQL para selecionar todos os cursos da tabela 'cursos'
+    //  bdConexao.query(sql, (err, cursos) => {
+    //     if(err) { res.status(500).json({mensagem: 'Erro ao buscar os cursos',err})
+    //         return   //em caso de erro, retorna um erro 500 com uma mensagem de erro em formato JSON
+    //     }
+    //     res.render('cursos',{cursos}) //renderiza a página 'cursos.ejs' passando o array de cursos como variável para ser exibida na página
+    // })
   
 
    
@@ -102,8 +113,20 @@ const cursoAtual = {cod: cursoEncontrado.cod, curso: cursoEncontrado.curso, ch: 
 
 }
 
-export function procurarCurso1(req, res) {
-  const cursoEncontrado = cursos.find(c => c.curso === req.params.curso)
+export const procurarCurso1 = async(req, res) => {
+  const nomeCurso = req.params.curso
+  const sql = 'SELECT * FROM cursos WHERE curso = ?' //consulta SQL para selecionar um curso pelo nome da tabela 'cursos'
+  try{
+    const [cursoEncontrado] = await bdConexao.execute(sql, [nomeCurso])
+    res.status(200).json({mensagem: 'Curso encontrado com sucesso', cursoEncontrado}) //retorna uma mensagem de sucesso em formato JSON
+  
+  
+  }catch(err){
+    console.log(err)
+    res.status(500).json({mensagem: 'Erro ao buscar o curso', err}) //em caso de erro, retorna um erro 500 com uma mensagem de erro em formato JSON
+  }
+
+
   if(!cursoEncontrado) return res.status(404).json({mensagem: 'Curso não encontrado'})
   res.status(200).json(cursoEncontrado)
 

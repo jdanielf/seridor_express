@@ -5,7 +5,7 @@ import express from 'express'
 
 // } from '../controllers/controllerCursoBD.js' //importação da função criarCurso do arquivo controllerCurso.js
 
-import {mostrarCursos,cadastroCurso,criarCurso
+import {mostrarCursos,cadastroCurso,criarCurso,procurarCurso1
 
 } from '../controllers/controllerCursoBD.js' //importação da função criarCurso do arquivo controllerCurso.js
 
@@ -40,7 +40,7 @@ routerCurso.get('/cursos', mostrarCursos) //rota para exibir todos os cursos cad
   
 
 
-// routerCurso.get('/curso/:curso', procurarCurso1) //rota para buscar um curso pelo nome, chama a função procurarCurso1 do controllerCurso.js para processar a requisição
+routerCurso.get('/curso/:curso', procurarCurso1) //rota para buscar um curso pelo nome, chama a função procurarCurso1 do controllerCurso.js para processar a requisição
 
 
 
